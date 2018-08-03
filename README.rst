@@ -33,11 +33,29 @@ Or with a Pandas DataFrame containing a high-accuracy subset of the Gaia DR2 dat
 
     >>> ebv = l18.ebv(gdr2['l'], gdr2['b'], 1/gdr2['parallax'])
 
-Finally, like the stilism.obspm.fr tool it can return the E(B-V) curve as a function of distance (without uncertainties)::
+Like the stilism.obspm.fr tool it can return the E(B-V) curve as a function of distance (without uncertainties)::
 
     >>> import matplotlib.pyplot as plt
     >>> plt.plot(range(0,900,20), l18.ebv(10,20,range(0,900,20)))
     >>> plt.show()
+
+Finally, to plot full-sky dust maps at a given distance::
+
+    >>> import numpy as np
+    >>> import healpy as hp
+    >>> import matplotlib.pyplot as plt
+    >>> from dust_maps_3d import lallement18 as l18
+    >>> 
+    >>> l, b = hp.pix2ang(64, np.arange(49152), lonlat=True)
+    >>> distance = 2000.
+    >>> d = np.ones(np.shape(l))*distance
+    >>> 
+    >>> cmap = plt.get_cmap('inferno_r')
+    >>> cmap.set_under('w')
+    >>> hp.mollview(l18.ebv(l, b, d), min=0, max=0.7, cmap=cmap, title='Cumulative E(B-V) to 2 kpc')
+
+.. figure:: ebv_2kpc.png
+   :alt: Cumulative E(B-V) to 2 kpc
 
 **CREDIT**
 

@@ -4,6 +4,7 @@ from astropy.io import fits
 import numpy as np
 import healpy
 
+
 class L18Map():
     """
     Returns E(B-V) at Galactic coordinates l, b and distance d, from the
