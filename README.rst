@@ -31,7 +31,7 @@ It also accepts array-like input. For example, with lists::
 
 Or with a Pandas DataFrame containing a high-accuracy subset of the Gaia DR2 data::
 
-    >>> ebv = l18.ebv(gdr2['l'], gdr2['b'], 1/gdr2['parallax'])
+    >>> ebv = l18.ebv(gdr2['l'], gdr2['b'], 1000/gdr2['parallax'])
 
 Like the stilism.obspm.fr tool it can return the E(B-V) curve as a function of distance (without uncertainties)::
 
